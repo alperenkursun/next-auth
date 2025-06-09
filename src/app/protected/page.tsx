@@ -1,8 +1,16 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import LogoutButton from "@/components/LogoutButton";
+
+export const dynamic = "force-dynamic";
 
 export default async function ProtectedPage() {
   const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/");
+  }
 
   return (
     <div className="p-8">
@@ -11,12 +19,7 @@ export default async function ProtectedPage() {
         {JSON.stringify(session, null, 2)}
       </pre>
       <div className="mt-6">
-        <a
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition mt-4"
-          href="/api/auth/logout"
-        >
-          Çıkış Yap
-        </a>
+        <LogoutButton />
       </div>
     </div>
   );
