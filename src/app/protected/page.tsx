@@ -14,13 +14,22 @@ export default async function ProtectedPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">Kullanıcı</h1>
+      <h1 className="text-2xl font-bold">Korumalı Sayfa</h1>
+
+      <div className="mt-4">
+        <p className="text-lg capitalize">
+          <strong>Rol:</strong>{" "}
+          {session.user?.roles?.length
+            ? session.user.roles.join(", ")
+            : "Belirtilmemiş"}
+        </p>
+      </div>
+
       <pre className="mt-4 bg-gray-100 p-4 rounded">
         {JSON.stringify(session, null, 2)}
       </pre>
-      <div className="mt-6">
-        <LogoutButton />
-      </div>
+
+      <LogoutButton />
     </div>
   );
 }

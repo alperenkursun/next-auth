@@ -9,7 +9,7 @@ export default function LogoutButton() {
           callbackUrl: "/api/auth/logout",
         })
       }
-      className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition mt-1"
+      className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition mt-5"
     >
       Çıkış Yap
     </button>
